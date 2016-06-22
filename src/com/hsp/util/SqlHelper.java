@@ -142,8 +142,8 @@ public class SqlHelper {
             ps = ct.prepareStatement(sql);
             
             // ?号赋值
-            if (parameters != null) {
-                for(int i=0; i < parameters.length; i++) {
+            if (parameters != null && !parameters.equals("")) {
+                for(int i = 0; i < parameters.length; i++) {
                     ps.setString(i+1, parameters[i]);
                 }
             }
