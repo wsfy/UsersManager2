@@ -2,6 +2,7 @@ package com.hsp.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
@@ -27,14 +28,16 @@ public class SqlHelper {
 	private static String password = "";
 	// 读配置文件
 	private static Properties pp = null;
-	private static FileInputStream fis = null;// 第一种流①文件流，中的文件（字节）输入流
+	private static InputStream fis = null;
 	
 	// 加载驱动，只需要一次
 	static {
 		try {
-			// dbinfo.propertis文件中读取配置信息
+			// 从dbinfo.propertis文件中读取配置信息
 			pp = new Properties();
-			fis = new FileInputStream("dbinfo.properties");
+			//fis = new FileInputStream("dbinfo.properties");
+			// 当我们使用JavaWeb的时候，读取文件要使用类加载器[因为类加载器在读取资源的视乎，默认的主目录是src] 
+			fis = SqlHelper.class.getClassLoader().getResourceAsStream("dbinfo.properties");
 			pp.load(fis); 						  // 装载数据库，装载完后开始读取。
 			url = pp.getProperty("url");          // 读取配置文件中的信息
 			username = pp.getProperty("username");// 读取配置文件中的信息
@@ -132,7 +135,7 @@ public class SqlHelper {
 	
 	// 统一的select 
 	// ResultSet->ArrayList
-	public static ResultSet executeQuery(String sql,String[] parameters) {
+	public static ResultSet executeQuery(String sql, String[] parameters) {
         
 		try {
             ct = getConnection();
@@ -140,8 +143,8 @@ public class SqlHelper {
             
             // ?号赋值
             if (parameters != null) {
-                for(int i=0;i<parameters.length;i++) {
-                    ps.setString(i+1,parameters[i]);
+                for(int i=0; i < parameters.length; i++) {
+                    ps.setString(i+1, parameters[i]);
                 }
             }
             rs = ps.executeQuery();
