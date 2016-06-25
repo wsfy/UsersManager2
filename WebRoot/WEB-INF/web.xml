@@ -21,6 +21,21 @@
     <servlet-name>ManageUsers</servlet-name>
     <servlet-class>com.hsp.view.ManageUsers</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DelClServlet</servlet-name>
+    <servlet-class>com.hsp.controller.DelClServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Ok</servlet-name>
+    <servlet-class>com.hsp.view.Ok</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Err</servlet-name>
+    <servlet-class>com.hsp.view.Err</servlet-class>
+  </servlet>
+
+
+
 
 
   
@@ -39,6 +54,18 @@
   <servlet-mapping>
     <servlet-name>ManageUsers</servlet-name>
     <url-pattern>/ManageUsers</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelClServlet</servlet-name>
+    <url-pattern>/DelClServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Ok</servlet-name>
+    <url-pattern>/Ok</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Err</servlet-name>
+    <url-pattern>/Err</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
